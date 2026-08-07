@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:34:00 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/07 21:08:32 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/07 21:12:50 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,3 @@ int	validate_timers_data(t_parse_data *data)
 	}
 	return (1);
 }
-
-
