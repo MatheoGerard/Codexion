@@ -14,7 +14,7 @@ int	ft_isdigit(char c)
 	return (0);
 }
 
-int	ft_atoi(char *str)
+int	ft_atoi(char *str, int *chek_max)
 {
 	long	nb;
 	int	sign;
@@ -34,6 +34,12 @@ int	ft_atoi(char *str)
 	while (ft_isdigit(str[i]))
 	{
 		nb = nb * 10 + (str[i] - 48);
+		if (nb > INT_MAX)
+		{
+			*chek_max = 1;
+			printf("Value out of range!\n");
+			return (0);
+		}
 		i++;
 	}
 	return (nb * sign);

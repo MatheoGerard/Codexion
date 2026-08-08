@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:34:00 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/08 10:25:55 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/08 12:42:37 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ int	check_args_nb(int nb_args)
 		return (1);
 }
 
-t_parse_data	*data_init(char **av)
+t_parse_data	*data_init(char **av, int *check_max)
 {
 	t_parse_data	*data;
 
 	data = malloc(1 * sizeof(t_parse_data));
-	data->number_of_coders = ft_atoi(av[1]);
-	data->time_to_burnout = ft_atoi(av[2]);
-	data->time_to_compile = ft_atoi(av[3]);
-	data->time_to_debug = ft_atoi(av[4]);
-	data->time_to_refactor = ft_atoi(av[5]);
-	data->number_of_compiles_required = ft_atoi(av[6]);
-	data->dongle_cooldown = ft_atoi(av[7]);
+	data->number_of_coders = ft_atoi(av[1], check_max);
+	data->time_to_burnout = ft_atoi(av[2], check_max);
+	data->time_to_compile = ft_atoi(av[3], check_max);
+	data->time_to_debug = ft_atoi(av[4], check_max);
+	data->time_to_refactor = ft_atoi(av[5], check_max);
+	data->number_of_compiles_required = ft_atoi(av[6], check_max);
+	data->dongle_cooldown = ft_atoi(av[7], check_max);
 	data->scheduler = av[8];
 	return (data);
 }
