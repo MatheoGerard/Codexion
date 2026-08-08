@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:34:00 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/07 21:12:50 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/08 10:25:55 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ t_parse_data	*data_init(char **av)
 	t_parse_data	*data;
 
 	data = malloc(1 * sizeof(t_parse_data));
-	data->number_of_coders = atoi(av[1]);
-	data->time_to_burnout = atoi(av[2]);
-	data->time_to_compile = atoi(av[3]);
-	data->time_to_debug = atoi(av[4]);
-	data->time_to_refactor = atoi(av[5]);
-	data->number_of_compiles_required = atoi(av[6]);
-	data->dongle_cooldown = atoi(av[7]);
+	data->number_of_coders = ft_atoi(av[1]);
+	data->time_to_burnout = ft_atoi(av[2]);
+	data->time_to_compile = ft_atoi(av[3]);
+	data->time_to_debug = ft_atoi(av[4]);
+	data->time_to_refactor = ft_atoi(av[5]);
+	data->number_of_compiles_required = ft_atoi(av[6]);
+	data->dongle_cooldown = ft_atoi(av[7]);
 	data->scheduler = av[8];
 	return (data);
 }

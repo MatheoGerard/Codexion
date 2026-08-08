@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 11:15:51 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/07 21:06:01 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/08 10:28:08 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ int	main(int ac, char **av)
 	data = data_init(av);
 	if (!validate_coders_data(data) || !validate_timers_data(data))
 		return (0);
+	printf("%d\n", data->number_of_coders);
 }
