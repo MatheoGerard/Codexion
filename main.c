@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 11:15:51 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/08 17:08:19 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/08 17:37:42 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	if (!validate_all(data))
-	{
-		free_all(data);
 		return (0);
-	}
 	printf("%d\n", data->number_of_coders);
 }
