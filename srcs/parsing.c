@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:34:00 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/08 12:42:37 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/08 14:27:50 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,45 +42,4 @@ t_parse_data	*data_init(char **av, int *check_max)
 	data->dongle_cooldown = ft_atoi(av[7], check_max);
 	data->scheduler = av[8];
 	return (data);
-}
-
-int	validate_coders_data(t_parse_data *data)
-{
-	int	coders_min;
-
-	coders_min = 1;
-	if (data->number_of_coders < coders_min)
-	{
-		printf("Not enough coders (must be a least %d)\n", coders_min);
-		return (0);
-	}
-	return (1);
-}
-
-int	validate_timers_data(t_parse_data *data)
-{
-	int	time_min;
-
-	time_min = 0;
-	if (data->time_to_burnout < time_min)
-	{
-		printf("Not enough time to burnout (must be a least %d)\n", time_min);
-		return (0);
-	}
-	if (data->time_to_compile < time_min)
-	{
-		printf("Not enough time to compile (must be a least %d)\n", time_min);
-		return (0);
-	}
-	if (data->time_to_debug < time_min)
-	{
-		printf("Not enough time to debug (must be a least %d)\n", time_min);
-		return (0);
-	}
-	if (data->time_to_refactor < time_min)
-	{
-		printf("Not enough time to refactor (must be a least %d)\n", time_min);
-		return (0);
-	}
-	return (1);
 }

@@ -1,6 +1,6 @@
 NAME = codexion
 
-SRCS = srcs/ft_atoi.c srcs/parsing.c main.c
+SRCS = srcs/ft_atoi.c srcs/parsing.c srcs/ft_strcmp.c srcs/validate.c srcs/error.c srcs/validate_utils.c main.c
 HEADER = header
 OBJS = $(SRCS:.c=.o)
 CC = cc
