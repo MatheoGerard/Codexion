@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 11:15:51 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/08 17:37:42 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/09 12:39:36 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int ac, char **av)
 {
 	t_parse_data	*data;
-	int	check_max;
+	int				check_max;
 
 	check_max = 0;
 	if (!check_args_nb(ac))

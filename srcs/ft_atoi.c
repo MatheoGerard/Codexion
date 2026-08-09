@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/09 12:40:44 by mgerard           #+#    #+#             */
+/*   Updated: 2026/08/09 12:49:02 by mgerard          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/codexion.h"
 
 int	ft_isspace(char c)
@@ -16,9 +28,9 @@ int	ft_isdigit(char c)
 
 int	ft_atoi(char *str, int *chek_max)
 {
-	long	nb;
-	int	sign;
-	int	i;
+	long			nb;
+	int				sign;
+	int				i;
 
 	sign = 1;
 	nb = 0;
@@ -27,20 +39,18 @@ int	ft_atoi(char *str, int *chek_max)
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[i] == '-')
+		if (str[i++] == '-')
 			sign *= -1;
-		i++;
 	}
 	while (ft_isdigit(str[i]))
 	{
-		nb = nb * 10 + (str[i] - 48);
+		nb = nb * 10 + (str[i++] - 48);
 		if (nb > INT_MAX)
 		{
 			*chek_max = 1;
 			printf("Value out of range!\n");
 			return (0);
 		}
-		i++;
 	}
 	return (nb * sign);
 }

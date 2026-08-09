@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/09 12:49:38 by mgerard           #+#    #+#             */
+/*   Updated: 2026/08/09 12:51:26 by mgerard          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/codexion.h"
 
 int	validate_coders_data(t_parse_data *data)
@@ -43,7 +55,8 @@ int	validate_timers_data(t_parse_data *data)
 
 int	validate_scheduler(t_parse_data *data)
 {
-	if (ft_strcmp(data->scheduler, "fifo") != 0 && ft_strcmp(data->scheduler, "edf") != 0)
+	if (ft_strcmp(data->scheduler, "fifo") != 0
+		&& ft_strcmp(data->scheduler, "edf") != 0)
 	{
 		printf("Scheduler must be 'fifo' or 'edf'\n");
 		return (0);
@@ -58,7 +71,8 @@ int	validate_number_compiles(t_parse_data *data)
 	loop_min = 1;
 	if (data->number_of_compiles_required < loop_min)
 	{
-		printf("Not enough number of compiles required (must be at least %d)", loop_min);
+		printf("Not enough number of compiles required ");
+		printf("(must be at least %d)", loop_min);
 		return (0);
 	}
 	return (1);
@@ -71,7 +85,8 @@ int	validate_dongle_cooldown(t_parse_data *data)
 	min_cooldown = 1;
 	if (data->dongle_cooldown < min_cooldown)
 	{
-		printf("Not enough dongle cooldown (must be at least %d)", min_cooldown);
+		printf("Not enough dongle cooldown ");
+		printf("(must be at least %d)", min_cooldown);
 		return (0);
 	}
 	return (1);

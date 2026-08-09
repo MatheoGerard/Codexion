@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/08 17:24:05 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/09 12:40:18 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ int				validate_scheduler(t_parse_data *data);
 int				validate_number_compiles(t_parse_data *data);
 int				validate_dongle_cooldown(t_parse_data *data);
 
-void	free_all(t_parse_data *data);
+void			free_all(t_parse_data *data);
 
 #endif
