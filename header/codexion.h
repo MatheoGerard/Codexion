@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/09 12:40:18 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/10 20:15:44 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <pthread.h>
 
 typedef struct s_parse_data
 {
@@ -29,6 +30,17 @@ typedef struct s_parse_data
 	int		dongle_cooldown;
 }	t_parse_data;
 
+typedef struct s_coders
+{
+	char	name;
+	pthread_t	id;
+}	t_coders;
+
+typedef struct s_table
+{
+	t_coders	**coders;
+}	t_table;
+
 t_parse_data	*data_init(char **av, int *check_max);
 int				check_args_nb(int nb_args);
 int				ft_atoi(char *str, int *check_max);
@@ -41,5 +53,8 @@ int				validate_number_compiles(t_parse_data *data);
 int				validate_dongle_cooldown(t_parse_data *data);
 
 void			free_all(t_parse_data *data);
+
+t_coders	*init_coders();
+t_table	*init_table(t_parse_data *data);
 
 #endif

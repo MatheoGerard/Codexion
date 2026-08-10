@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 11:15:51 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/09 12:39:36 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/10 20:17:24 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int ac, char **av)
 {
 	t_parse_data	*data;
 	int				check_max;
+	t_table	*table;
 
 	check_max = 0;
 	if (!check_args_nb(ac))
@@ -28,5 +29,6 @@ int	main(int ac, char **av)
 	}
 	if (!validate_all(data))
 		return (0);
-	printf("%d\n", data->number_of_coders);
+	table = init_table(data);
+	printf("%c\n", table->coders[0]->name);
 }
