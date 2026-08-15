@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/15 15:04:06 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/15 22:43:22 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,17 @@ typedef struct s_parse_data
 	int		dongle_cooldown;
 }	t_parse_data;
 
+typedef struct s_dongles
+{
+	int	state;
+	int	n;
+}	t_dongle;
+
 typedef struct s_coders
 {
 	pthread_t	id;
 	int			n;
+	t_dongle	*dongles[2];
 }	t_coders;
 
 typedef struct s_table
