@@ -4,7 +4,7 @@ SRCS = srcs/ft_atoi.c srcs/parsing.c srcs/ft_strcmp.c srcs/validate.c srcs/error
 HEADER = header
 OBJS = $(SRCS:.c=.o)
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -pthread
 
 all: $(NAME)
 

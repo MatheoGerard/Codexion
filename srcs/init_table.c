@@ -15,7 +15,7 @@ t_table	*init_table(t_parse_data *data)
 	i = 0;
 	while (i < data->number_of_coders)
 	{
-		coders[i] = init_coders();
+		coders[i] = init_coders(i + 1);
 		i++;
 	}
 	table->coders = coders;

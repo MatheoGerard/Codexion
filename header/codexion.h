@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/10 20:15:44 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/15 15:04:06 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <pthread.h>
+# include <unistd.h>
 
 typedef struct s_parse_data
 {
@@ -32,8 +33,8 @@ typedef struct s_parse_data
 
 typedef struct s_coders
 {
-	char	name;
 	pthread_t	id;
+	int			n;
 }	t_coders;
 
 typedef struct s_table
@@ -54,7 +55,7 @@ int				validate_dongle_cooldown(t_parse_data *data);
 
 void			free_all(t_parse_data *data);
 
-t_coders	*init_coders();
+t_coders	*init_coders(int index);
 t_table	*init_table(t_parse_data *data);
 
 #endif
