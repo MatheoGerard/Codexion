@@ -1,6 +1,10 @@
 NAME = codexion
 
-SRCS = srcs/ft_atoi.c srcs/parsing.c srcs/ft_strcmp.c srcs/validate.c srcs/error.c srcs/validate_utils.c srcs/init_coders.c srcs/init_table.c main.c
+SRCS = srcs/ft_atoi.c srcs/parsing.c srcs/ft_strcmp.c\
+       srcs/validate.c srcs/error.c srcs/validate_utils.c\
+       srcs/init_coders.c srcs/init_table.c\
+       srcs/init_dongle.c\
+       main.c
 HEADER = header
 OBJS = $(SRCS:.c=.o)
 CC = cc

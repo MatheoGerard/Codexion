@@ -14,7 +14,11 @@ t_coders	*init_coders(int i)
 	coder = malloc(sizeof(t_coders));
 	if (coder == NULL)
 		return (NULL);
-	pthread_create(&coder->id, NULL, routine_test, NULL);
+	if (pthread_create(&coder->id, NULL, routine_test, NULL) != 0)
+	{
+		printf("Error in thread create of %d coder", coder->n);
+		return (NULL);
+	}
 	coder->n = i;
 	return (coder);
 }

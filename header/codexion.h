@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/15 22:43:22 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/16 16:17:35 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,21 @@ typedef struct s_dongles
 {
 	int	state;
 	int	n;
+	pthread_mutex_t	mutex;
 }	t_dongle;
 
 typedef struct s_coders
 {
 	pthread_t	id;
 	int			n;
-	t_dongle	*dongles[2];
+	t_dongle	*left;
+	t_dongle	*right;
 }	t_coders;
 
 typedef struct s_table
 {
 	t_coders	**coders;
+	t_dongle	**dongles;
 }	t_table;
 
 t_parse_data	*data_init(char **av, int *check_max);
@@ -63,6 +66,7 @@ int				validate_dongle_cooldown(t_parse_data *data);
 void			free_all(t_parse_data *data);
 
 t_coders	*init_coders(int index);
+t_dongle	*init_dongle(int n);
 t_table	*init_table(t_parse_data *data);
 
 #endif
