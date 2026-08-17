@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/16 16:17:35 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/17 18:47:41 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,16 @@ typedef struct s_coders
 
 typedef struct s_table
 {
+	t_parse_data	*data;
 	t_coders	**coders;
 	t_dongle	**dongles;
 }	t_table;
+
+
+typedef struct wait_queue
+{
+	t_coders	**coders;
+}	t_wait_queue;
 
 t_parse_data	*data_init(char **av, int *check_max);
 int				check_args_nb(int nb_args);
@@ -65,7 +72,7 @@ int				validate_dongle_cooldown(t_parse_data *data);
 
 void			free_all(t_parse_data *data);
 
-t_coders	*init_coders(int index);
+t_coders	*init_coders(int index, t_table *table);
 t_dongle	*init_dongle(int n);
 t_table	*init_table(t_parse_data *data);
 

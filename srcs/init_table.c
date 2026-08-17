@@ -1,15 +1,27 @@
 #include "../header/codexion.h"
 
-t_table	*init_table(t_parse_data *data)
+t_coders	**create_coders(t_parse_data *data, t_table *table)
 {
-	int	i;
-	t_table	*table;
-	t_dongle	**dongles;
 	t_coders	**coders;
+	int	i;
 
-	table = malloc(sizeof(t_table));
-	if (table == NULL)
+	coders = malloc(data->number_of_coders * sizeof(t_coders));
+	if (coders == NULL)
 		return (NULL);
+	i = 0;
+	while (i < data->number_of_coders)
+	{
+		coders[i] = init_coders(i + 1, table);
+		i++;
+	}
+	return (coders);
+}
+
+t_dongle	**create_dongles(t_parse_data *data)
+{
+	t_dongle	**dongles;
+	int	i;
+
 	dongles = malloc(data->number_of_coders * sizeof(t_dongle));
 	if (dongles == NULL)
 		return (NULL);
@@ -19,16 +31,22 @@ t_table	*init_table(t_parse_data *data)
 		dongles[i] = init_dongle(i + 1);
 		i++;
 	}
-	table->dongles = dongles;
-	coders = malloc(data->number_of_coders * sizeof(t_coders));
-	if (coders == NULL)
+	return (dongles);
+}
+
+t_table	*init_table(t_parse_data *data)
+{
+	t_table	*table;
+
+	table = malloc(sizeof(t_table));
+	if (table == NULL)
 		return (NULL);
-	i = 0;
-	while (i < data->number_of_coders)
-	{
-		coders[i] = init_coders(i + 1);
-		i++;
-	}
-	table->coders = coders;
+	table->data = data;
+	table->dongles = create_dongles(data);
+	if (table->dongles == NULL)
+		return (NULL);
+	table->coders = create_coders(data, table);
+	if (table->coders == NULL)
+		return (NULL);
 	return (table);
 }
