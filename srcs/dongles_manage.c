@@ -6,8 +6,11 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 15:39:51 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/17 15:40:03 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/18 14:42:11 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+int	take_dongle(t_coders *coder ,t_dongle *dongle)
+{
 
+}
