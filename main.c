@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 11:15:51 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/15 15:07:17 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/20 19:07:48 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ int	main(int ac, char **av)
 	check_max = 0;
 	if (!check_args_nb(ac))
 		return (0);
-	data = data_init(av, &check_max);
+	data = data_init(av, ac, &check_max);
+	if (data == NULL)
+		return (0);
 	if (check_max == 1)
 	{
 		free_all(data);

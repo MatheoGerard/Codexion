@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:34:00 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/08 14:27:50 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/20 19:23:23 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,44 @@ int	check_args_nb(int nb_args)
 		return (1);
 }
 
-t_parse_data	*data_init(char **av, int *check_max)
+int	is_digit(char c)
+{
+	if (c < 48 || c > 57)
+		return (0);
+	return (1);
+}
+
+int	is_numbers(char **av, int ac)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < ac - 1)
+	{
+		j = 0;
+		if (av[i][j] == '-' || av[i][j] == '+')
+			j++;
+		while (av[i][j] != '\0')
+		{
+			if (!is_digit(av[i][j]))
+			{
+				printf("Arg %d must be a number!\n", i);
+				return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+t_parse_data	*data_init(char **av, int ac, int *check_max)
 {
 	t_parse_data	*data;
 
+	if (!is_numbers(av, ac))
+		return (NULL);
 	data = malloc(1 * sizeof(t_parse_data));
 	data->number_of_coders = ft_atoi(av[1], check_max);
 	data->time_to_burnout = ft_atoi(av[2], check_max);

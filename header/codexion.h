@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/17 18:47:41 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/20 19:03:42 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct wait_queue
 	t_coders	**coders;
 }	t_wait_queue;
 
-t_parse_data	*data_init(char **av, int *check_max);
+t_parse_data	*data_init(char **av, int ac, int *check_max);
 int				check_args_nb(int nb_args);
 int				ft_atoi(char *str, int *check_max);
 int				ft_strcmp(char *s1, char *s2);

@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 12:40:44 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/09 12:49:02 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/20 19:04:30 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,8 @@ int	ft_atoi(char *str, int *chek_max)
 	while (ft_isspace(str[i]))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
-	{
 		if (str[i++] == '-')
 			sign *= -1;
-	}
 	while (ft_isdigit(str[i]))
 	{
 		nb = nb * 10 + (str[i++] - 48);

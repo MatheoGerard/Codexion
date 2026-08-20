@@ -16,7 +16,7 @@ $(NAME): $(OBJS)
 	$(CC) $(OBJS) -o $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I $(HEADER) -c $< -o $@
+	$(CC) $(CFLAGS) -I $(HEADER) -c $< -o $@ -g
 
 clean: 
 	rm -f $(OBJS)
