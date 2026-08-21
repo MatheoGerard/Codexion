@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/20 19:03:42 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/21 10:11:59 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ typedef struct s_dongles
 
 typedef struct s_coders
 {
+	t_parse_data	*data;
 	pthread_t	id;
 	int			n;
 	t_dongle	*left;
 	t_dongle	*right;
+	int			compile_nb;
 }	t_coders;
 
 typedef struct s_table
@@ -75,5 +77,6 @@ void			free_all(t_parse_data *data);
 t_coders	*init_coders(int index, t_table *table);
 t_dongle	*init_dongle(int n);
 t_table	*init_table(t_parse_data *data);
+void	*coders_routine(void *args);
 
 #endif
