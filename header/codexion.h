@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/21 10:11:59 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/21 11:16:42 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <limits.h>
 # include <pthread.h>
 # include <unistd.h>
+# include <sys/time.h>
 
 typedef struct s_parse_data
 {

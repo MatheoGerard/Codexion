@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 11:17:06 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/21 10:18:57 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/21 10:36:01 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ void	coders_debug(t_parse_data *data, t_coders *coder)
 	print_status(coder, "is debugging");
 	coder->compile_nb++;
 	usleep(data->time_to_debug * 1000);
+}
+
+void	coders_refactor(t_parse_data *data, t_coders *coder)
+{
+	print_status(coder, "is refactoring");
+	usleep(data->time_to_refactor * 1000);
 }
 
 void	*coders_routine(void *args)
