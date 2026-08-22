@@ -1,12 +1,5 @@
 #include "../header/codexion.h"
 
-void	*routine_test()
-{
-	printf("I am a new thread\n");
-	usleep(1000);
-	return (NULL);
-}
-
 t_coders	*init_coders(int i, t_table *table)
 {
 	t_coders	*coder;

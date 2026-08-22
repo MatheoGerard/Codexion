@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/21 18:33:29 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/22 15:46:30 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ typedef struct s_table
 }	t_table;
 
 
-typedef struct wait_queue
+typedef struct s_wait_queue
 {
-	t_coders	**coders;
+	void	*coder;
+	struct s_wait_queue	*next;
 }	t_wait_queue;
 
 t_parse_data	*data_init(char **av, int ac, int *check_max);
@@ -82,5 +83,8 @@ t_table	*init_table(t_parse_data *data);
 void	*coders_routine(void *args);
 int	set_start_time(t_parse_data *data);
 time_t	get_time(t_parse_data *data);
+t_wait_queue	*create_coder_node(void *content);
+t_wait_queue	*find_last_coder(t_wait_queue *queue);
+void	add_coder_to_queue(t_wait_queue **queue, t_wait_queue *coder);
 
 #endif
