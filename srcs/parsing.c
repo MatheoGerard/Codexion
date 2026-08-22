@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:34:00 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/20 19:23:23 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/21 14:52:29 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ t_parse_data	*data_init(char **av, int ac, int *check_max)
 	if (!is_numbers(av, ac))
 		return (NULL);
 	data = malloc(1 * sizeof(t_parse_data));
+	if (data == NULL)
+		return (NULL);
+	if (!set_start_time(data))
+		return (NULL);
 	data->number_of_coders = ft_atoi(av[1], check_max);
 	data->time_to_burnout = ft_atoi(av[2], check_max);
 	data->time_to_compile = ft_atoi(av[3], check_max);

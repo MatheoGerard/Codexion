@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/21 11:16:42 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/21 18:33:29 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct s_parse_data
 {
+	struct timeval	tv;
 	char	*scheduler;
 	int		number_of_coders;
 	int		time_to_burnout;
@@ -79,5 +80,7 @@ t_coders	*init_coders(int index, t_table *table);
 t_dongle	*init_dongle(int n);
 t_table	*init_table(t_parse_data *data);
 void	*coders_routine(void *args);
+int	set_start_time(t_parse_data *data);
+time_t	get_time(t_parse_data *data);
 
 #endif

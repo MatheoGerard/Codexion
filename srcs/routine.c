@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 11:17:06 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/21 10:36:01 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/21 18:34:41 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_status(t_coders *coder, char *status)
 {
-	printf("timestamp_in_ms %d %s\n", coder->n, status);
+	printf("%ld %d %s\n", get_time(coder->data),coder->n, status);
 }
 
 void	coders_debug(t_parse_data *data, t_coders *coder)
