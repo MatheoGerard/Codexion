@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/22 15:46:30 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/31 16:12:34 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,25 @@ typedef struct s_coders
 	int			compile_nb;
 }	t_coders;
 
+typedef struct s_node
+{
+	t_coders	*content;
+	struct s_node	*next;
+}	t_node;
+
+typedef struct s_wait_queue
+{
+	void	*first;
+	void	*last;
+}	t_wait_queue;
+
 typedef struct s_table
 {
 	t_parse_data	*data;
 	t_coders	**coders;
 	t_dongle	**dongles;
+	t_wait_queue	*queue;
 }	t_table;
-
-
-typedef struct s_wait_queue
-{
-	void	*coder;
-	struct s_wait_queue	*next;
-}	t_wait_queue;
 
 t_parse_data	*data_init(char **av, int ac, int *check_max);
 int				check_args_nb(int nb_args);
@@ -86,5 +92,8 @@ time_t	get_time(t_parse_data *data);
 t_wait_queue	*create_coder_node(void *content);
 t_wait_queue	*find_last_coder(t_wait_queue *queue);
 void	add_coder_to_queue(t_wait_queue **queue, t_wait_queue *coder);
+void	print_status(t_coders *coder, char *status);
+void	take_dongle(t_coders *coder);
+void	release_dongles(t_coders *coder);
 
 #endif

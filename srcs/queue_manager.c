@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 13:22:38 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/22 15:50:19 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/22 17:40:36 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 t_wait_queue	*create_coder_node(void *content)
 {
-	t_wait_queue	*new;
+	t_node	*new;
 
-	new = malloc(sizeof(t_wait_queue));
+	new = malloc(sizeof(t_node));
 	if (new == NULL)
 		return (NULL);
-	new->coder = content;
+	new->content = content;
 	new->next = NULL;
 	return (new);
 }

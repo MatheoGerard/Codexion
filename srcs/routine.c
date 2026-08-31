@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 11:17:06 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/21 18:34:41 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/08/31 17:25:17 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 void	print_status(t_coders *coder, char *status)
 {
 	printf("%ld %d %s\n", get_time(coder->data),coder->n, status);
+}
+
+void	coders_compile(t_parse_data *data, t_coders *coder)
+{
+	take_dongle(coder);
+	print_status(coder->n, "is compiling");
+	usleep(data->time_to_compile * 1000);
 }
 
 void	coders_debug(t_parse_data *data, t_coders *coder)
