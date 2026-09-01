@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_table.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/01 16:21:03 by mgerard           #+#    #+#             */
+/*   Updated: 2026/09/01 16:21:33 by mgerard          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/codexion.h"
 
 t_coders	**create_coders(t_parse_data *data, t_table *table)
 {
 	t_coders	**coders;
-	int	i;
+	int			i;
 
 	coders = malloc(data->number_of_coders * sizeof(t_coders));
 	if (coders == NULL)
@@ -20,7 +32,7 @@ t_coders	**create_coders(t_parse_data *data, t_table *table)
 t_dongle	**create_dongles(t_parse_data *data)
 {
 	t_dongle	**dongles;
-	int	i;
+	int			i;
 
 	dongles = malloc(data->number_of_coders * sizeof(t_dongle));
 	if (dongles == NULL)

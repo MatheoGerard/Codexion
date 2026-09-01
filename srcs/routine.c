@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 11:17:06 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/01 16:02:49 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/01 16:24:02 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_status(t_coders *coder, char *status)
 {
-	printf("%ld %d %s\n", get_time(coder->data),coder->n, status);
+	printf("%ld %d %s\n", get_time(coder->data), coder->n, status);
 }
 
 void	coders_compile(t_parse_data *data, t_coders *coder)
