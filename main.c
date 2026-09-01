@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 11:15:51 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/20 19:07:48 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/01 15:55:25 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main(int ac, char **av)
 	while (i < data->number_of_coders)
 	{
 		pthread_join(table->coders[i]->id, NULL);
-		printf("%d\n", table->coders[i]->n);
 		i++;
 	}
 }

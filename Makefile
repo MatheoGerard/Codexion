@@ -4,7 +4,7 @@ SRCS = srcs/ft_atoi.c srcs/parsing.c srcs/ft_strcmp.c\
        srcs/validate.c srcs/error.c srcs/validate_utils.c\
        srcs/init_coders.c srcs/init_table.c\
        srcs/init_dongle.c srcs/routine.c\
-       srcs/time_manager.c\
+       srcs/time_manager.c srcs/dongles_manage.c\
        main.c
 HEADER = header
 OBJS = $(SRCS:.c=.o)

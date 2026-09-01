@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 11:17:06 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/31 17:25:17 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/01 16:02:49 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ void	print_status(t_coders *coder, char *status)
 void	coders_compile(t_parse_data *data, t_coders *coder)
 {
 	take_dongle(coder);
-	print_status(coder->n, "is compiling");
+	print_status(coder, "is compiling");
 	usleep(data->time_to_compile * 1000);
+	release_dongles(coder);
 }
 
 void	coders_debug(t_parse_data *data, t_coders *coder)
@@ -42,7 +43,10 @@ void	*coders_routine(void *args)
 	t_coders	*coder;
 
 	coder = (t_coders *)args;
-	while (coder->compile_nb < coder->data->number_of_compiles_required)
-		coders_debug(coder->data, coder);
+	if (coder->n % 2 == 1)
+		usleep(100);
+	coders_compile(coder->data, coder);
+	coders_debug(coder->data, coder);
+	coders_refactor(coder->data, coder);
 	return (NULL);
 }

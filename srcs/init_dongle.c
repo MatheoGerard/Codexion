@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 14:33:54 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/16 16:32:44 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/01 15:51:03 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ t_dongle	*init_dongle(int n)
 		return (NULL);
 	}
 	dongle->n = n;
-	printf("bonjour je suis le %d mutex\n", dongle->n);
 	return (dongle);
 }
