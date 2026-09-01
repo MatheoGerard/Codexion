@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/01 16:20:22 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/01 19:40:30 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,13 @@ typedef struct s_coders
 {
 	t_parse_data	*data;
 	pthread_t	id;
-	int			n;
+	int		n;
 	t_dongle	*left;
 	t_dongle	*right;
-	int			compile_nb;
+	int		compile_nb;
+	pthread_mutex_t	mutex;
+	time_t	last_compile_time;
+	struct s_table	*table_link;
 }	t_coders;
 
 typedef struct s_node
@@ -68,6 +71,7 @@ typedef struct s_table
 	t_coders	**coders;
 	t_dongle	**dongles;
 	t_wait_queue	*queue;
+	pthread_mutex_t	mutex_print;
 }	t_table;
 
 t_parse_data	*data_init(char **av, int ac, int *check_max);

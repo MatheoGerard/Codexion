@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 16:21:03 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/01 16:21:33 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/01 19:39:17 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ t_table	*init_table(t_parse_data *data)
 	table = malloc(sizeof(t_table));
 	if (table == NULL)
 		return (NULL);
+	if (pthread_mutex_init(&table->mutex_print, NULL) != 0)
+	{
+		printf("Error in mutex create of table");
+		return (NULL);
+	}
 	table->data = data;
 	table->dongles = create_dongles(data);
 	if (table->dongles == NULL)
