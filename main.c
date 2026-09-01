@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 11:15:51 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/01 15:55:25 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/01 20:27:42 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ int	main(int ac, char **av)
 		pthread_join(table->coders[i]->id, NULL);
 		i++;
 	}
+	pthread_join(table->monitor, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/01 19:40:30 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/01 21:13:47 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_coders
 	pthread_mutex_t	mutex;
 	time_t	last_compile_time;
 	struct s_table	*table_link;
+	pthread_mutex_t	mutex_finish;
+	int	is_finish;
 }	t_coders;
 
 typedef struct s_node
@@ -67,11 +69,14 @@ typedef struct s_wait_queue
 
 typedef struct s_table
 {
+	pthread_t	monitor;
 	t_parse_data	*data;
 	t_coders	**coders;
 	t_dongle	**dongles;
 	t_wait_queue	*queue;
 	pthread_mutex_t	mutex_print;
+	pthread_mutex_t	mutex_stop;
+	int	stop;
 }	t_table;
 
 t_parse_data	*data_init(char **av, int ac, int *check_max);
@@ -99,5 +104,6 @@ void	add_coder_to_queue(t_wait_queue **queue, t_wait_queue *coder);
 void	print_status(t_coders *coder, char *status);
 void	take_dongle(t_coders *coder);
 void	release_dongles(t_coders *coder);
+void	*death_check(void *args);
 
 #endif

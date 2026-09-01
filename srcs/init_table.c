@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 16:21:03 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/01 19:39:17 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/01 20:46:20 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,19 @@ t_table	*init_table(t_parse_data *data)
 		printf("Error in mutex create of table");
 		return (NULL);
 	}
+	if (pthread_mutex_init(&table->mutex_stop, NULL) != 0)
+	{
+		printf("Error in mutex create of stop");
+		return (NULL);
+	}
 	table->data = data;
 	table->dongles = create_dongles(data);
+	table->stop = 0;
 	if (table->dongles == NULL)
 		return (NULL);
 	table->coders = create_coders(data, table);
 	if (table->coders == NULL)
 		return (NULL);
+	pthread_create(&table->monitor, NULL, death_check, table);
 	return (table);
 }

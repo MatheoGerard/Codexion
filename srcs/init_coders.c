@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 16:20:45 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/01 19:36:02 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/01 21:20:31 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ t_coders	*init_coders(int i, t_table *table)
 		coder->right = table->dongles[i - 2];
 		coder->left = table->dongles[i - 1];
 	}
+	pthread_mutex_init(&coder->mutex, NULL);
+	pthread_mutex_init(&coder->mutex_finish, NULL);
 	coder->n = i;
+	coder->is_finish = 0;
 	coder->compile_nb = 0;
 	coder->table_link = table;
-	pthread_mutex_init(&coder->mutex, NULL);
 	if (pthread_create(&coder->id, NULL, coders_routine, coder) != 0)
 	{
 		printf("Error in thread create of %d coder", coder->n);
