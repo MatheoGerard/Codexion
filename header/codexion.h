@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/02 15:37:52 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/02 20:33:31 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,7 @@ int				validate_timers_data(t_parse_data *data);
 int				validate_scheduler(t_parse_data *data);
 int				validate_number_compiles(t_parse_data *data);
 int				validate_dongle_cooldown(t_parse_data *data);
-
 void			free_all(t_parse_data *data);
-
 t_coders	*init_coders(int index, t_table *table);
 t_dongle	*init_dongle(int n);
 t_table	*init_table(t_parse_data *data);
@@ -106,6 +104,6 @@ void	take_dongle(t_coders *coder);
 void	release_dongles(t_coders *coder);
 void	*death_check(void *args);
 void	ft_usleep(long time_to_wait, t_coders *coder);
-
+void	end_free(t_table *table);
 
 #endif

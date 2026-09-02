@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 11:15:51 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/02 13:24:37 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/02 20:03:16 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ int	main(int ac, char **av)
 		i++;
 	}
 	pthread_join(table->monitor, NULL);
+	end_free(table);
 }

@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 16:20:45 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/01 21:20:31 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/02 20:48:40 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_coders	*init_coders(int i, t_table *table)
 	coder->n = i;
 	coder->is_finish = 0;
 	coder->compile_nb = 0;
+	coder->last_compile_time = 0;
 	coder->table_link = table;
 	if (pthread_create(&coder->id, NULL, coders_routine, coder) != 0)
 	{
