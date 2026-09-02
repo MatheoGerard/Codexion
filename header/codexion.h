@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/01 21:13:47 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/02 15:37:52 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,7 @@ void	print_status(t_coders *coder, char *status);
 void	take_dongle(t_coders *coder);
 void	release_dongles(t_coders *coder);
 void	*death_check(void *args);
+void	ft_usleep(long time_to_wait, t_coders *coder);
+
 
 #endif
