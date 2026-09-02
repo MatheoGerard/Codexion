@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/02 20:33:31 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/02 23:29:18 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ time_t	get_time(t_parse_data *data);
 t_wait_queue	*create_coder_node(void *content);
 t_wait_queue	*find_last_coder(t_wait_queue *queue);
 void	add_coder_to_queue(t_wait_queue **queue, t_wait_queue *coder);
-void	print_status(t_coders *coder, char *status);
+void	print_status(t_coders *coder, char *status, int force);
 void	take_dongle(t_coders *coder);
 void	release_dongles(t_coders *coder);
 void	*death_check(void *args);

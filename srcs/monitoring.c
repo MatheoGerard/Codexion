@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 19:54:24 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/02 20:03:10 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/02 23:29:56 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_death(t_table *table)
 		pthread_mutex_unlock(&table->coders[i]->mutex_finish);
 		if (!is_finish && get_time(table->data) - last >= table->data->time_to_burnout)
 		{
-			print_status(table->coders[i], "burned out");
+			print_status(table->coders[i], "burned out", 1);
 			pthread_mutex_lock(&table->mutex_stop);
 			table->stop = 1;
 			pthread_mutex_unlock(&table->mutex_stop);
@@ -55,10 +55,10 @@ int	check_finish(t_table *table)
 			return (0);
 		i++;
 	}
+	print_status(table->coders[table->data->number_of_coders - 1], "successfully completed", 1);
 	pthread_mutex_lock(&table->mutex_stop);
 	table->stop = 1;
 	pthread_mutex_unlock(&table->mutex_stop);
-	printf("SUCCES");
 	return (1);
 }
 
@@ -79,7 +79,7 @@ void	*death_check(void *args)
 		pthread_mutex_lock(&table->mutex_stop);
 		is_stoped = table->stop;
 		pthread_mutex_unlock(&table->mutex_stop);
-		usleep(100);
+		usleep(1000);
 	}
 	return (NULL);
 }
