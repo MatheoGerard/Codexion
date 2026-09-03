@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 16:21:03 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/02 23:02:06 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/03 20:37:42 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,27 @@ t_dongle	**create_dongles(t_parse_data *data)
 	return (dongles);
 }
 
+void	link_dongle_coders(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->data->number_of_coders)
+	{
+		if (i == 0)
+		{
+			table->dongles[i]->workers[0] = table->coders[table->data->number_of_coders - 1];
+			table->dongles[i]->workers[1] = table->coders[i];
+		}
+		else
+		{
+			table->dongles[i]->workers[0] = table->coders[i - 1];
+			table->dongles[i]->workers[1] = table->coders[i];
+		}
+		i++;
+	}
+}
+
 t_table	*init_table(t_parse_data *data)
 {
 	t_table	*table;
@@ -71,6 +92,7 @@ t_table	*init_table(t_parse_data *data)
 	table->coders = create_coders(data, table);
 	if (table->coders == NULL)
 		return (NULL);
+	link_dongle_coders(table);
 	pthread_create(&table->monitor, NULL, death_check, table);
 	return (table);
 }

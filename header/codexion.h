@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/02 23:29:18 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/03 22:20:41 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ typedef struct s_dongles
 {
 	int	state;
 	int	n;
+	struct s_coders	*workers[2];
+	time_t	available;
+	pthread_mutex_t	mutex_time;
 	pthread_mutex_t	mutex;
+
 }	t_dongle;
 
 typedef struct s_coders
@@ -73,7 +77,6 @@ typedef struct s_table
 	t_parse_data	*data;
 	t_coders	**coders;
 	t_dongle	**dongles;
-	t_wait_queue	*queue;
 	pthread_mutex_t	mutex_print;
 	pthread_mutex_t	mutex_stop;
 	int	stop;

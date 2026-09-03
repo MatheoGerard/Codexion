@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 11:17:06 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/02 23:30:36 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/03 20:59:08 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	*coders_routine(void *args)
 
 	coder = (t_coders *)args;
 	if (coder->n % 2 == 0)
-		usleep(100);
+		usleep(1000);
 	pthread_mutex_lock(&coder->table_link->mutex_stop);
 	is_stoped = coder->table_link->stop;
 	pthread_mutex_unlock(&coder->table_link->mutex_stop);

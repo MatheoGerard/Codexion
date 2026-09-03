@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 19:54:24 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/02 23:29:56 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/03 21:19:24 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	*death_check(void *args)
 		pthread_mutex_lock(&table->mutex_stop);
 		is_stoped = table->stop;
 		pthread_mutex_unlock(&table->mutex_stop);
-		usleep(1000);
+		usleep(2000);
 	}
 	return (NULL);
 }
