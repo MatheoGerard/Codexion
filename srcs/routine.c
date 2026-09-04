@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 11:17:06 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/03 20:59:08 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/04 17:39:33 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	print_status(t_coders *coder, char *status, int force)
 
 void	coders_compile(t_parse_data *data, t_coders *coder)
 {
+	wait_and_extract_from_heaps(coder);
 	take_dongle(coder);
 	print_status(coder, "is compiling", 0);
 	pthread_mutex_lock(&coder->mutex);
@@ -48,6 +49,10 @@ void	coders_refactor(t_parse_data *data, t_coders *coder)
 {
 	print_status(coder, "is refactoring", 0);
 	ft_usleep(data->time_to_refactor, coder);
+	lock_both_heaps(coder);
+	heap_insert(coder->left->heap, coder, get_time(data));
+	heap_insert(coder->right->heap, coder, get_time(data));
+	unlock_both_heaps(coder);
 }
 
 void	*coders_routine(void *args)
@@ -57,7 +62,11 @@ void	*coders_routine(void *args)
 
 	coder = (t_coders *)args;
 	if (coder->n % 2 == 0)
-		usleep(1000);
+		ft_usleep(100, coder);
+	lock_both_heaps(coder);
+	heap_insert(coder->left->heap, coder, get_time(coder->table_link->data));
+	heap_insert(coder->right->heap, coder, get_time(coder->table_link->data));
+	unlock_both_heaps(coder);
 	pthread_mutex_lock(&coder->table_link->mutex_stop);
 	is_stoped = coder->table_link->stop;
 	pthread_mutex_unlock(&coder->table_link->mutex_stop);

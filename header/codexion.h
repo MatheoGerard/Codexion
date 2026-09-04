@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/03 22:20:41 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/04 17:19:18 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ typedef struct s_dongles
 {
 	int	state;
 	int	n;
-	struct s_coders	*workers[2];
 	time_t	available;
+	struct s_heap	*heap;
+	char	*scheduler;
+	pthread_mutex_t	mutex_heap;
 	pthread_mutex_t	mutex_time;
 	pthread_mutex_t	mutex;
 
@@ -62,14 +64,14 @@ typedef struct s_coders
 typedef struct s_node
 {
 	t_coders	*content;
-	struct s_node	*next;
+	long long	key;
 }	t_node;
 
-typedef struct s_wait_queue
+typedef struct s_heap
 {
-	void	*first;
-	void	*last;
-}	t_wait_queue;
+	t_node	nodes[2];
+	int	size;
+}	t_heap;
 
 typedef struct s_table
 {
@@ -94,19 +96,23 @@ int				validate_number_compiles(t_parse_data *data);
 int				validate_dongle_cooldown(t_parse_data *data);
 void			free_all(t_parse_data *data);
 t_coders	*init_coders(int index, t_table *table);
-t_dongle	*init_dongle(int n);
+t_dongle	*init_dongle(int n, t_parse_data *data);
 t_table	*init_table(t_parse_data *data);
 void	*coders_routine(void *args);
 int	set_start_time(t_parse_data *data);
 time_t	get_time(t_parse_data *data);
-t_wait_queue	*create_coder_node(void *content);
-t_wait_queue	*find_last_coder(t_wait_queue *queue);
-void	add_coder_to_queue(t_wait_queue **queue, t_wait_queue *coder);
 void	print_status(t_coders *coder, char *status, int force);
 void	take_dongle(t_coders *coder);
 void	release_dongles(t_coders *coder);
 void	*death_check(void *args);
 void	ft_usleep(long time_to_wait, t_coders *coder);
 void	end_free(t_table *table);
+t_heap	*init_heap(void);
+void	heap_insert(t_heap *heap, struct s_coders *coder, time_t key);
+struct s_coders	*heap_extract_min(t_heap *heap);
+struct s_coders	*heap_peek(t_heap *heap);
+void	wait_and_extract_from_heaps(t_coders *coder);
+void    lock_both_heaps(t_coders *coder);
+void    unlock_both_heaps(t_coders *coder);
 
 #endif
