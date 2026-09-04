@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 14:51:32 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/02 16:00:16 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/04 19:04:28 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ time_t	get_time(t_parse_data *data)
 
 	if (gettimeofday(&time, NULL))
 		return (-1);
-	return ((time.tv_sec - data->tv.tv_sec) * 1000 + (time.tv_usec - data->tv.tv_usec) / 1000);
+	return ((time.tv_sec - data->tv.tv_sec) * 1000
+		+ (time.tv_usec - data->tv.tv_usec) / 1000);
 }
 
 void	ft_usleep(long time_to_wait, t_coders *coder)
@@ -52,4 +53,3 @@ void	ft_usleep(long time_to_wait, t_coders *coder)
 	if (!is_stoped)
 		usleep(remaining);
 }
-

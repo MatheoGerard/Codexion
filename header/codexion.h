@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/04 17:19:18 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/04 19:26:06 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,6 @@ struct s_coders	*heap_peek(t_heap *heap);
 void	wait_and_extract_from_heaps(t_coders *coder);
 void    lock_both_heaps(t_coders *coder);
 void    unlock_both_heaps(t_coders *coder);
+int	is_terminated(t_coders *coder);
 
 #endif

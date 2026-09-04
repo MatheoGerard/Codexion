@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 12:53:06 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/03 20:39:56 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/04 19:21:13 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,3 @@ void	end_free(t_table *table)
 	free_coders(table);
 	free_table(table);
 }
-

@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 15:10:06 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/04 17:26:41 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/04 20:47:00 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_heap	*init_heap(void)
 
 void	heap_insert(t_heap *heap, struct s_coders *coder, time_t key)
 {
-	int			i;
+	int		i;
 	t_node	tmp;
 
 	i = heap->size;
@@ -44,10 +44,10 @@ void	heap_insert(t_heap *heap, struct s_coders *coder, time_t key)
 struct s_coders	*heap_extract_min(t_heap *heap)
 {
 	struct s_coders	*min_coder;
-	int					i;
-	int					smallest;
-	int					left;
-	int					right;
+	int				i;
+	int				smallest;
+	int				left;
+	int				right;
 	t_node			tmp;
 
 	if (heap->size == 0)
@@ -73,39 +73,6 @@ struct s_coders	*heap_extract_min(t_heap *heap)
 		i = smallest;
 	}
 	return (min_coder);
-}
-
-//static int	is_my_turn(t_dongle *dongle, t_coders *coder)
-//{
-//	int	ret;
-//
-//	ret = 0;
-//	pthread_mutex_lock(&dongle->mutex_heap);
-//	if (dongle->heap->size > 0 && dongle->heap->nodes[0].content == coder)
-//	{
-//		heap_extract_min(dongle->heap);
-//		ret = 1;
-//	}
-//	pthread_mutex_unlock(&dongle->mutex_heap);
-//	return (ret);
-//}
-
-void wait_and_extract_from_heaps(t_coders *coder)
-{
-	while (1)
-	{
-		lock_both_heaps(coder);
-		if (coder->left->heap->size > 0 && coder->left->heap->nodes[0].content == coder &&
-			coder->right->heap->size > 0 && coder->right->heap->nodes[0].content == coder)
-		{
-			heap_extract_min(coder->left->heap);
-			heap_extract_min(coder->right->heap);
-			unlock_both_heaps(coder);
-			break ;
-		}
-		unlock_both_heaps(coder);
-		usleep(200);
-	}
 }
 
 struct s_coders	*heap_peek(t_heap *heap)
