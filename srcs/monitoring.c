@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 19:54:24 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/05 12:08:59 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/05 16:41:11 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	check_finish(t_table *table)
 			return (0);
 		i++;
 	}
-	print_status(table->coders[table->data->number_of_coders - 1],
-		"successfully completed", 1);
 	pthread_mutex_lock(&table->mutex_stop);
 	table->stop = 1;
 	pthread_mutex_unlock(&table->mutex_stop);
