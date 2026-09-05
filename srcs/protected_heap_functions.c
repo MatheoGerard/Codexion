@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   var_utils.c                                        :+:      :+:    :+:   */
+/*   protected_heap_functions.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/04 19:24:16 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/05 12:08:33 by mgerard          ###   ########.fr       */
+/*   Created: 2026/09/05 16:15:24 by mgerard           #+#    #+#             */
+/*   Updated: 2026/09/05 16:19:41 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/codexion.h"
 
-int	is_terminated(t_table *table)
+void	protected_extract_heap(t_dongle *dongle)
 {
-	int	is_stoped;
-
-	pthread_mutex_lock(&table->mutex_stop);
-	is_stoped = table->stop;
-	pthread_mutex_unlock(&table->mutex_stop);
-	return (is_stoped);
+	pthread_mutex_lock(&dongle->mutex_heap);
+	heap_extract_min(dongle->heap);
+	pthread_mutex_unlock(&dongle->mutex_heap);
 }
 
-int	is_completed(t_coders *coder)
+void	protected_heap_insert(t_dongle *dongle, struct s_coders *coder,
+				time_t key)
 {
-	int	is_completed;
-
-	pthread_mutex_lock(&coder->mutex_finish);
-	is_completed = coder->is_finish;
-	pthread_mutex_unlock(&coder->mutex_finish);
-	return (is_completed);
+	pthread_mutex_lock(&dongle->mutex_heap);
+	heap_insert(dongle->heap, coder, key);
+	pthread_mutex_unlock(&dongle->mutex_heap);
 }

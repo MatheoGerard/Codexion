@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 14:51:32 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/04 19:04:28 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/05 16:05:53 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ time_t	get_time(t_parse_data *data)
 
 void	ft_usleep(long time_to_wait, t_coders *coder)
 {
-	int	is_stoped;
 	int	remaining;
 	int	first_wait;
 	int	i;
@@ -39,17 +38,31 @@ void	ft_usleep(long time_to_wait, t_coders *coder)
 	i = 0;
 	remaining = time_to_wait % 100;
 	first_wait = time_to_wait - remaining;
-	pthread_mutex_lock(&coder->table_link->mutex_stop);
-	is_stoped = coder->table_link->stop;
-	pthread_mutex_unlock(&coder->table_link->mutex_stop);
-	while (!is_stoped && i != first_wait)
+	while (!is_terminated(coder->table_link) && i != first_wait)
 	{
 		usleep(100000);
-		pthread_mutex_lock(&coder->table_link->mutex_stop);
-		is_stoped = coder->table_link->stop;
-		pthread_mutex_unlock(&coder->table_link->mutex_stop);
 		i += 100;
 	}
-	if (!is_stoped)
+	if (!is_terminated(coder->table_link))
 		usleep(remaining);
+}
+
+time_t	get_available_time(t_dongle *dongle)
+{
+	long long	dongle_time;
+
+	pthread_mutex_lock(&dongle->mutex_time);
+	dongle_time = dongle->available;
+	pthread_mutex_unlock(&dongle->mutex_time);
+	return (dongle_time);
+}
+
+time_t	compute_key(t_coders *coder, t_dongle *dongle)
+{
+	t_parse_data	*data;
+
+	data = coder->table_link->data;
+	if (ft_strcmp(dongle->scheduler, "edf") == 0)
+		return (coder->last_compile_time + data->time_to_burnout);
+	return (get_time(data));
 }

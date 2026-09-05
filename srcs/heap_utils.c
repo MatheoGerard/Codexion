@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 15:10:06 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/04 20:47:00 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/05 16:25:02 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,46 @@ t_heap	*init_heap(void)
 		return (NULL);
 	heap->size = 0;
 	return (heap);
+}
+
+void	sift_down(t_heap *heap, int i)
+{
+	int		smallest;
+	int		left;
+	int		right;
+	t_node	tmp;
+
+	while (1)
+	{
+		left = 2 * i + 1;
+		right = 2 * i + 2;
+		smallest = i;
+		if (left < heap->size && heap->nodes[left].key
+			< heap->nodes[smallest].key)
+			smallest = left;
+		if (right < heap->size && heap->nodes[right].key
+			< heap->nodes[smallest].key)
+			smallest = right;
+		if (smallest == i)
+			break ;
+		tmp = heap->nodes[i];
+		heap->nodes[i] = heap->nodes[smallest];
+		heap->nodes[smallest] = tmp;
+		i = smallest;
+	}
+}
+
+struct s_coders	*heap_extract_min(t_heap *heap)
+{
+	struct s_coders	*min_coder;
+
+	if (heap->size == 0)
+		return (NULL);
+	min_coder = heap->nodes[0].content;
+	heap->size--;
+	heap->nodes[0] = heap->nodes[heap->size];
+	sift_down(heap, 0);
+	return (min_coder);
 }
 
 void	heap_insert(t_heap *heap, struct s_coders *coder, time_t key)
@@ -39,40 +79,6 @@ void	heap_insert(t_heap *heap, struct s_coders *coder, time_t key)
 		heap->nodes[(i - 1) / 2] = tmp;
 		i = (i - 1) / 2;
 	}
-}
-
-struct s_coders	*heap_extract_min(t_heap *heap)
-{
-	struct s_coders	*min_coder;
-	int				i;
-	int				smallest;
-	int				left;
-	int				right;
-	t_node			tmp;
-
-	if (heap->size == 0)
-		return (NULL);
-	min_coder = heap->nodes[0].content;
-	heap->size--;
-	heap->nodes[0] = heap->nodes[heap->size];
-	i = 0;
-	while (1)
-	{
-		left = 2 * i + 1;
-		right = 2 * i + 2;
-		smallest = i;
-		if (left < heap->size && heap->nodes[left].key < heap->nodes[smallest].key)
-			smallest = left;
-		if (right < heap->size && heap->nodes[right].key < heap->nodes[smallest].key)
-			smallest = right;
-		if (smallest == i)
-			break ;
-		tmp = heap->nodes[i];
-		heap->nodes[i] = heap->nodes[smallest];
-		heap->nodes[smallest] = tmp;
-		i = smallest;
-	}
-	return (min_coder);
 }
 
 struct s_coders	*heap_peek(t_heap *heap)

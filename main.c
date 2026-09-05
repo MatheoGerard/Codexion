@@ -6,18 +6,30 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 11:15:51 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/02 20:03:16 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/05 13:14:54 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/codexion.h"
 
+void	join_all_threads(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->data->number_of_coders)
+	{
+		pthread_join(table->coders[i]->id, NULL);
+		i++;
+	}
+	pthread_join(table->monitor, NULL);
+}
+
 int	main(int ac, char **av)
 {
 	t_parse_data	*data;
 	int				check_max;
-	t_table	*table;
-	int				i;
+	t_table			*table;
 
 	check_max = 0;
 	if (!check_args_nb(ac))
@@ -33,12 +45,6 @@ int	main(int ac, char **av)
 	if (!validate_all(data))
 		return (0);
 	table = init_table(data);
-	i = 0;
-	while (i < data->number_of_coders)
-	{
-		pthread_join(table->coders[i]->id, NULL);
-		i++;
-	}
-	pthread_join(table->monitor, NULL);
+	join_all_threads(table);
 	end_free(table);
 }

@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 12:53:06 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/04 19:21:13 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/05 11:44:07 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ void	free_dongles(t_table *table)
 	while (i < table->data->number_of_coders)
 	{
 		pthread_mutex_destroy(&table->dongles[i]->mutex);
+		pthread_mutex_destroy(&table->dongles[i]->mutex_heap);
+		pthread_mutex_destroy(&table->dongles[i]->mutex_time);
+		free(table->dongles[i]->heap);
 		free(table->dongles[i]);
 		i++;
 	}

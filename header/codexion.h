@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/05 11:12:54 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/05 11:12:57 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/05 16:17:47 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,16 +102,22 @@ t_table			*init_table(t_parse_data *data);
 void			*coders_routine(void *args);
 int				set_start_time(t_parse_data *data);
 time_t			get_time(t_parse_data *data);
+time_t			get_available_time(t_dongle *dongle);
+time_t			compute_key(t_coders *coder, t_dongle *dongle);
 void			print_status(t_coders *coder, char *status, int force);
 void			take_dongle(t_coders *coder);
 void			release_dongles(t_coders *coder);
 void			*death_check(void *args);
 void			ft_usleep(long time_to_wait, t_coders *coder);
 void			end_free(t_table *table);
-int				is_terminated(t_coders *coder);
+int				is_terminated(t_table *table);
+int				is_completed(t_coders *coder);
 
 t_heap			*init_heap(void);
 void			heap_insert(t_heap *heap, struct s_coders *coder, time_t key);
+void			protected_heap_insert(t_dongle *dongle,
+					struct s_coders *coder, time_t key);
+void			protected_extract_heap(t_dongle *dongle);
 struct s_coders	*heap_extract_min(t_heap *heap);
 struct s_coders	*heap_peek(t_heap *heap);
 

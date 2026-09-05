@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/15 11:17:06 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/04 20:18:17 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/05 13:49:18 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,16 @@ void	coders_refactor(t_parse_data *data, t_coders *coder)
 void	*coders_routine(void *args)
 {
 	t_coders	*coder;
-	int			is_stoped;
 
 	coder = (t_coders *)args;
 	if (coder->n % 2 == 0)
 		ft_usleep(100, coder);
-	is_stoped = is_terminated(coder);
-	while (!is_stoped && coder->compile_nb
+	while (!is_terminated(coder->table_link) && coder->compile_nb
 		< coder->data->number_of_compiles_required)
 	{
 		coders_compile(coder->data, coder);
 		coders_debug(coder->data, coder);
 		coders_refactor(coder->data, coder);
-		is_stoped = is_terminated(coder);
 	}
 	pthread_mutex_lock(&coder->mutex_finish);
 	coder->is_finish = 1;
