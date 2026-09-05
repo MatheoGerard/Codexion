@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/06 09:05:29 by mgerard           #+#    #+#             */
-/*   Updated: 2026/09/04 19:26:06 by mgerard          ###   ########.fr       */
+/*   Created: 2026/09/05 11:12:54 by mgerard           #+#    #+#             */
+/*   Updated: 2026/09/05 11:12:57 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,42 +23,41 @@
 typedef struct s_parse_data
 {
 	struct timeval	tv;
-	char	*scheduler;
-	int		number_of_coders;
-	int		time_to_burnout;
-	int		time_to_compile;
-	int		time_to_debug;
-	int		time_to_refactor;
-	int		number_of_compiles_required;
-	int		dongle_cooldown;
+	char			*scheduler;
+	int				number_of_coders;
+	int				time_to_burnout;
+	int				time_to_compile;
+	int				time_to_debug;
+	int				time_to_refactor;
+	int				number_of_compiles_required;
+	int				dongle_cooldown;
 }	t_parse_data;
 
 typedef struct s_dongles
 {
-	int	state;
-	int	n;
-	time_t	available;
+	int				state;
+	int				n;
+	time_t			available;
 	struct s_heap	*heap;
-	char	*scheduler;
+	char			*scheduler;
 	pthread_mutex_t	mutex_heap;
 	pthread_mutex_t	mutex_time;
 	pthread_mutex_t	mutex;
-
 }	t_dongle;
 
 typedef struct s_coders
 {
 	t_parse_data	*data;
-	pthread_t	id;
-	int		n;
-	t_dongle	*left;
-	t_dongle	*right;
-	int		compile_nb;
+	pthread_t		id;
+	int				n;
+	t_dongle		*left;
+	t_dongle		*right;
+	int				compile_nb;
 	pthread_mutex_t	mutex;
-	time_t	last_compile_time;
+	time_t			last_compile_time;
 	struct s_table	*table_link;
 	pthread_mutex_t	mutex_finish;
-	int	is_finish;
+	int				is_finish;
 }	t_coders;
 
 typedef struct s_node
@@ -70,18 +69,18 @@ typedef struct s_node
 typedef struct s_heap
 {
 	t_node	nodes[2];
-	int	size;
+	int		size;
 }	t_heap;
 
 typedef struct s_table
 {
-	pthread_t	monitor;
+	pthread_t		monitor;
 	t_parse_data	*data;
-	t_coders	**coders;
-	t_dongle	**dongles;
+	t_coders		**coders;
+	t_dongle		**dongles;
 	pthread_mutex_t	mutex_print;
 	pthread_mutex_t	mutex_stop;
-	int	stop;
+	int				stop;
 }	t_table;
 
 t_parse_data	*data_init(char **av, int ac, int *check_max);
@@ -95,25 +94,25 @@ int				validate_scheduler(t_parse_data *data);
 int				validate_number_compiles(t_parse_data *data);
 int				validate_dongle_cooldown(t_parse_data *data);
 void			free_all(t_parse_data *data);
-t_coders	*init_coders(int index, t_table *table);
-t_dongle	*init_dongle(int n, t_parse_data *data);
-t_table	*init_table(t_parse_data *data);
-void	*coders_routine(void *args);
-int	set_start_time(t_parse_data *data);
-time_t	get_time(t_parse_data *data);
-void	print_status(t_coders *coder, char *status, int force);
-void	take_dongle(t_coders *coder);
-void	release_dongles(t_coders *coder);
-void	*death_check(void *args);
-void	ft_usleep(long time_to_wait, t_coders *coder);
-void	end_free(t_table *table);
-t_heap	*init_heap(void);
-void	heap_insert(t_heap *heap, struct s_coders *coder, time_t key);
+
+t_coders		*init_coders(int index, t_table *table);
+t_dongle		*init_dongle(int n, t_parse_data *data);
+t_table			*init_table(t_parse_data *data);
+
+void			*coders_routine(void *args);
+int				set_start_time(t_parse_data *data);
+time_t			get_time(t_parse_data *data);
+void			print_status(t_coders *coder, char *status, int force);
+void			take_dongle(t_coders *coder);
+void			release_dongles(t_coders *coder);
+void			*death_check(void *args);
+void			ft_usleep(long time_to_wait, t_coders *coder);
+void			end_free(t_table *table);
+int				is_terminated(t_coders *coder);
+
+t_heap			*init_heap(void);
+void			heap_insert(t_heap *heap, struct s_coders *coder, time_t key);
 struct s_coders	*heap_extract_min(t_heap *heap);
 struct s_coders	*heap_peek(t_heap *heap);
-void	wait_and_extract_from_heaps(t_coders *coder);
-void    lock_both_heaps(t_coders *coder);
-void    unlock_both_heaps(t_coders *coder);
-int	is_terminated(t_coders *coder);
 
 #endif

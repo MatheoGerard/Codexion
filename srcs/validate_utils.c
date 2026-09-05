@@ -6,7 +6,7 @@
 /*   By: mgerard <mgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 12:49:38 by mgerard           #+#    #+#             */
-/*   Updated: 2026/08/09 12:51:26 by mgerard          ###   ########.fr       */
+/*   Updated: 2026/09/05 11:07:31 by mgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	validate_dongle_cooldown(t_parse_data *data)
 {
 	int	min_cooldown;
 
-	min_cooldown = 1;
+	min_cooldown = 0;
 	if (data->dongle_cooldown < min_cooldown)
 	{
 		printf("Not enough dongle cooldown ");
